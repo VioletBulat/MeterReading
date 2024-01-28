@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Counter.iml" filepath="$PROJECT_DIR$/Counter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MeterReading.iml" filepath="$PROJECT_DIR$/MeterReading.iml" />
     </modules>
   </component>
 </project>
