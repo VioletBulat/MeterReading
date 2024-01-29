@@ -2,7 +2,7 @@ package Counter;
 
 import java.util.*;
 
-public class Counter {
+public class Main {
 
     // основной класс
 
