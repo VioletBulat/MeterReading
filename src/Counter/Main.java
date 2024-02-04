@@ -1,10 +1,15 @@
 package Counter;
 
+import java.sql.*;
 import java.util.*;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Main {
 
-    // основной класс
+    private static final String URL = "jdbc:postgresql://localhost:5432/ylab";
+    private static final String USER_NAME = "ylab";
+    private static final String PASSWORD = "ylab";
 
     // список для хранения пользователей (логин, пароль)
     private static final Map<String, String> users = new HashMap<>();
@@ -46,6 +51,23 @@ public class Main {
         }
     }
 
+    // проверка пользователя в базе данных
+    private static boolean validateUser(String username, String password) {
+        try (Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+            String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, password);
+                try (ResultSet resultSet = preparedStatement.executeQuery()){
+                    return resultSet.next();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     // метод для авторизации пользователей
     private static void login() {
         Scanner scanner = new Scanner(System.in);
@@ -57,8 +79,7 @@ public class Main {
             String password = scanner.nextLine();
 
             // проверка на корректность введенных данных
-
-            if (users.containsKey(username) && users.get(username).equals(password)) {
+            if(validateUser(username, password)) {
                 currentUsername = new User(username, password);
                 currentUserReading = new MeterReading();
                 System.out.println("Login successful!");
@@ -84,21 +105,51 @@ public class Main {
         System.out.println("Enter a new username: ");
         String userName = scanner.nextLine();
 
-        // проверяем существует ли такой логин
-        if(users.containsKey(userName)) {
+        if(userExists(userName)) {
             System.out.println("Username already exists. Please choose a different one.");
-            register(); // рекурсия
+            register();
             return;
         }
 
         System.out.println("Enter a new password: ");
         String password = scanner.nextLine();
 
-        users.put(userName, password);
+        saveUser(userName, password);
+        //users.put(userName, password);
         System.out.println("Registration successful! Now you can log in.");
         currentUsername = new User(userName, password);
 
         Admin.logOperations(currentUsername.getUsername() + " registered.");
+    }
+
+    // проверка на существование пользователя в базе данных
+    private static boolean userExists(String username) {
+        try (Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+            String query = "SELECT * FROM users WHERE username = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+                preparedStatement.setString(1, username);
+                try (ResultSet resultSet = preparedStatement.executeQuery()){
+                    return resultSet.next();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // сохранение пользователя в базе данных
+    private static void saveUser(String username, String password) {
+        try (Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)){
+            String query = "INSERT INTO users (username, password) VALUES (?, ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+                preparedStatement.setString(1, username);
+                preparedStatement.setString(2, password);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // показывает доступные опции после авторизации
@@ -153,15 +204,31 @@ public class Main {
         } while (choice != 6);
     }
 
-    // метод для внесения показаний пользователями
+    // метод для внесения показаний пользователями в базу данных
     public static void dataInput() {
-        if(currentUserReading == null) {
+        if (currentUserReading == null) {
             currentUserReading = new MeterReading();
         }
         if (currentUsername.getLastReadingDate() == null || isMonthPassed(currentUsername.getLastReadingDate())) {
             User currentUser = currentUsername;
             currentUserReading.enterReadings();
-            Admin.logOperations(currentUser.getUsername() + " entered readings.");
+
+            try (Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+                String query = "INSERT INTO meter_readings (username, cold_water_reading, hot_water_reading, reading_date) " +
+                        "VALUES (?, ?, ?, ?)";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)){
+                    preparedStatement.setString(1, currentUser.getUsername());
+                    preparedStatement.setInt(2, currentUserReading.getColdWaterReading());
+                    preparedStatement.setInt(3, currentUserReading.getHotWaterReading());
+                    preparedStatement.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+
+                    preparedStatement.executeUpdate();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            Admin.logOperations(currentUser.getUsername());
             currentUser.setLastReadingDate(new Date());
         } else {
             System.out.println("You can only input data once a month. Try again later.");
@@ -186,10 +253,31 @@ public class Main {
     // метод для вывода актуальных данных
     public static void currentData() {
         if (currentUserReading != null) {
-            currentUserReading.showCurrentData();
-            Admin.logOperations(currentUsername.getUsername() + " viewed the current readings.");
+            try (Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+                String query = "SELECT cold_water_reading, hot_water_reading FROM meter_reading WHERE username = ? " +
+                        "ORDER BY entry_date DESC LIMIT 1";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setString(1, currentUsername.getUsername());
+
+                    try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                        if(resultSet.next()) {
+                            int coldWaterReading = resultSet.getInt("cold_water_reading");
+                            int hotWaterReading = resultSet.getInt("hot_water_reading");
+
+                            System.out.println("Current readings:");
+                            System.out.println("Cold water: " + coldWaterReading);
+                            System.out.println("Hot water: " + hotWaterReading);
+                        } else {
+                            System.out.println("No readings available. Please input reading first.");
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } else {
-            System.out.println("No readings available. Please input readings first.");
+            System.out.println("No readings available. Please input reading first.");
         }
     }
 
@@ -199,18 +287,78 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter month to view data: ");
             String month = scanner.nextLine();
-            currentUserReading.showMonthlyData(month);
-            Admin.logOperations(currentUsername.getUsername() + " viewed the readings for the month.");
+
+            try (Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+                String query = "SELECT cold_water_reading, hot_water_reading, entry_date FROM meter_reading " +
+                        "WHERE username = ? AND EXTRACT(MONTH FROM entry_date) = ?";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setString(1, currentUsername.getUsername());
+                    preparedStatement.setString(2, month);
+
+                    try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                        boolean dataFound = false;
+
+                        while (resultSet.next()) {
+                            int coldWaterReading = resultSet.getInt("cold_water_reading");
+                            int hotWaterReading = resultSet.getInt("hot_water_reading");
+                            String entryDate = resultSet.getString("entry_date");
+
+                            System.out.println("Readings for " + entryDate + ":");
+                            System.out.println("Cold water: " + coldWaterReading);
+                            System.out.println("Hot water: " + hotWaterReading);
+                            System.out.println("---");
+
+                            dataFound = true;
+                        }
+
+                        if (!dataFound) {
+                            System.out.println("No readings available for the specified month.");
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } else {
-            System.out.println("No readings available. Please input readings first.");
+            System.out.println("No readings available for the specified month.");
         }
     }
 
     // метод для вывода истории данных
     public static void dataHistory() {
         if(currentUserReading != null) {
-            currentUserReading.showDataHistory();
-            Admin.logOperations(currentUsername.getUsername() + " viewed the reading history.");
+            try (Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+                String query = "SELECT cold_water_reading, hot_water_reading, entry_date FROM meter_reading " +
+                        "WHERE username = ? ORDER BY entry_date DESC";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setString(1, currentUsername.getUsername());
+
+                    try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                        boolean dataFound = false;
+
+                        while (resultSet.next()) {
+                            int coldWaterReading = resultSet.getInt("cold_water_reading");
+                            int hotWaterReading = resultSet.getInt("hot_water_reading");
+                            String entryDate = resultSet.getString("entry_date");
+
+                            System.out.println("Readings for " + entryDate + ":");
+                            System.out.println("Cold water: " + coldWaterReading);
+                            System.out.println("Hot water: " + hotWaterReading);
+                            System.out.println("---");
+
+                            dataFound = true;
+                        }
+
+                        if (!dataFound) {
+                            System.out.println("No data history available.");
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } else {
             System.out.println("No readings available. Please input readings first.");
         }
@@ -219,6 +367,17 @@ public class Main {
     // Выход из системы
     public static void logout() {
         if(currentUserReading != null) {
+            try (Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+                String query = "UPDATE users SET last_reading_date = ? WHERE username = ?";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setDate(1, new java.sql.Date(new Date().getTime()));
+                    preparedStatement.setString(2, currentUsername.getUsername());
+                    preparedStatement.executeUpdate();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             System.out.println("Logging out...");
             Admin.logOperations(currentUsername.getUsername() + " logged out.");
             currentUserReading = null;
@@ -228,7 +387,22 @@ public class Main {
     }
 
     // логирование действий пользователей
-    public static void showAdminLogs() {
-        Admin.showLogs();
+    private static void showAdminLogs() {
+        if("admin".equals(currentUsername.getUsername())) {
+            try (Connection connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)){
+                String sql = "SELECT * FROM, admin_logs";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    try (ResultSet resultSet = preparedStatement.executeQuery()){
+                        while (resultSet.next()) {
+                            System.out.println(resultSet.getString("log_entry"));
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Permission denied. Only Admin can view logs.");
+        }
     }
 }

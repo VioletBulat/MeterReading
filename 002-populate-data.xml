@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="2" author="pg67aw">
+        <!-- Вставка данных в таблицу users -->
+        <insert schemaName="entities" tableName="users">
+            <column name="username" value="user1"/>
+            <column name="password" value="pass1"/>
+            <column name="last_reading_date" value="2023-01-01"/>
+        </insert>
+
+        <insert schemaName="entities" tableName="users">
+            <column name="username" value="user2"/>
+            <column name="password" value="pass2"/>
+            <column name="last_reading_date" value="2023-02-01"/>
+        </insert>
+
+        <insert schemaName="entities" tableName="users">
+            <column name="username" value="user3"/>
+            <column name="password" value="pass3"/>
+            <column name="last_reading_date" value="2023-03-01"/>
+        </insert>
+
+        <!-- Вставка данных в таблицу meter_readings -->
+        <insert schemaName="entities" tableName="meter_readings">
+            <column name="username" value="user1"/>
+            <column name="cold_water_reading" value="100"/>
+            <column name="hot_water_reading" value="50"/>
+            <column name="reading_date" value="2023-01-01 12:00:00"/>
+        </insert>
+
+        <insert schemaName="entities" tableName="meter_readings">
+            <column name="username" value="user2"/>
+            <column name="cold_water_reading" value="120"/>
+            <column name="hot_water_reading" value="60"/>
+            <column name="reading_date" value="2023-02-01 14:30:00"/>
+        </insert>
+
+        <insert schemaName="entities" tableName="meter_readings">
+            <column name="username" value="user3"/>
+            <column name="cold_water_reading" value="80"/>
+            <column name="hot_water_reading" value="40"/>
+            <column name="reading_date" value="2023-03-01 16:45:00"/>
+        </insert>
+
+        <!-- Вставка данных в таблицу logs -->
+        <insert schemaName="entities" tableName="logs">
+            <column name="username" value="user1"/>
+            <column name="log_entry" value="User login"/>
+            <column name="log_date" value="2023-01-01 10:00:00"/>
+        </insert>
+
+        <insert schemaName="entities" tableName="logs">
+            <column name="username" value="user2"/>
+            <column name="log_entry" value="User registration"/>
+            <column name="log_date" value="2023-02-01 11:30:00"/>
+        </insert>
+
+        <insert schemaName="entities" tableName="logs">
+            <column name="username" value="user3"/>
+            <column name="log_entry" value="Data input"/>
+            <column name="log_date" value="2023-03-01 14:45:00"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

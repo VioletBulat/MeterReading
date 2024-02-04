@@ -62,6 +62,7 @@ public class MeterReading {
     // выводим данные за месяц
     public void showMonthlyData(String month) {
             List<Integer> readings = monthlyData.get(month);
+            System.out.println(readings);
             if (readings != null && !readings.isEmpty()) {
                 System.out.println("Monthly readings for " + month + ":");
                 for (int i = 0; i < readings.size(); i += 2) {

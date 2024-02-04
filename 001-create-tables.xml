@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <!-- Создание таблицы users в схеме entities -->
+    <changeSet id="1" author="pg67aw">
+        <createTable schemaName="entities" tableName="users">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_reading_date" type="DATE">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <!-- Добавление sequence для users -->
+        <createSequence sequenceName="entities.users_id_seq" startValue="1" incrementBy="1" minValue="1" />
+    </changeSet>
+
+    <!-- Изменение id в таблице users для использования sequence -->
+    <changeSet id="2" author="pg67aw">
+        <sql>ALTER TABLE entities.users ALTER COLUMN id SET DEFAULT nextval('entities.users_id_seq'::regclass);</sql>
+        <modifyDataType tableName="users" columnName="id" newDataType="bigint"/>
+    </changeSet>
+
+
+    <!-- Создание таблицы meter_readings в схеме entities -->
+    <changeSet id="5" author="yourname">
+        <createTable schemaName="entities" tableName="meter_readings">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cold_water_reading" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hot_water_reading" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reading_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Добавление sequence для meter_readings -->
+        <createSequence sequenceName="entities.meter_readings_id_seq" startValue="1" incrementBy="1" minValue="1" />
+    </changeSet>
+
+    <!-- Изменение id в таблице meter_readings для использования sequence -->
+    <changeSet id="6" author="yourname">
+        <sql>ALTER TABLE entities.meter_readings ALTER COLUMN id SET DEFAULT nextval('entities.meter_readings_id_seq'::regclass);</sql>
+        <modifyDataType tableName="meter_readings" columnName="id" newDataType="bigint"/>
+    </changeSet>
+
+
+    <!-- Создание таблицы logs в схеме entities -->
+    <changeSet id="3" author="pg67aw">
+        <createTable schemaName="entities" tableName="logs">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="log_entry" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="log_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Добавление sequence для logs -->
+        <createSequence sequenceName="entities.logs_id_seq" startValue="1" incrementBy="1" minValue="1" />
+    </changeSet>
+
+    <!-- Изменение id в таблице logs для использования sequence -->
+    <changeSet id="4" author="pg67aw">
+        <sql>ALTER TABLE entities.logs ALTER COLUMN id SET DEFAULT nextval('entities.logs_id_seq'::regclass);</sql>
+        <modifyDataType tableName="logs" columnName="id" newDataType="bigint"/>
+    </changeSet>
+
+</databaseChangeLog>
