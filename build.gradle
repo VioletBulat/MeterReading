@@ -22,11 +22,12 @@ dependencies {
 liquibase {
     activities {
         main {
-            changeLogFile 'src/master.xml'
-            url 'jdbc:postgresql://localhost:5432/your_database'
+            changeLogFile 'src/changelog.xml'
+            url 'jdbc:postgresql://localhost:5432/ylab'
             driver 'org.postgresql.Driver'
             username 'ylab'
             password 'ylab'
+            commandLineOptions '--logLevel=debug'
         }
     }
 }

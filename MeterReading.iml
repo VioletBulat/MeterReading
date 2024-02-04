@@ -42,5 +42,129 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/liquibase-core-4.25.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/antlr" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/base-annotations" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/base-ide-plugins" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/base-services" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/base-services-groovy" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/bootstrap" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/build-cache" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/build-cache-base" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/build-cache-http" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/build-cache-packaging" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/build-events" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/build-init" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/build-operations" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/build-option" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/build-profile" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/cli" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/code-quality" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/composite-builds" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/core" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/core-api" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/dependency-management" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/diagnostics" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/ear" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/enterprise" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/enterprise-logging" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/enterprise-operations" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/enterprise-workers" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/execution" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/file-collections" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/file-temp" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/file-watching" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/files" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/functional" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/hashing" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/ide" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/ide-native" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/ide-plugins" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/input-tracking" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/installation-beacon" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/instrumentation-declarations" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/internal-instrumentation-api" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/ivy" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/jacoco" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/java-platform" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/jvm-services" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/kotlin-dsl-tooling-models" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/language-groovy" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/language-java" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/language-jvm" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/language-native" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/launcher" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/logging" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/logging-api" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/maven" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/messaging" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/model-core" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/model-groovy" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/native" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/normalization-java" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/persistent-cache" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/platform-base" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/platform-jvm" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/platform-native" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugin-development" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugin-use" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugins" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugins-distribution" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugins-groovy" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugins-java" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugins-java-base" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugins-jvm-test-fixtures" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugins-jvm-test-suite" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugins-test-report-aggregation" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/plugins-version-catalog" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/problems" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/problems-api" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/process-services" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/publish" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/reporting" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/resources" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/resources-gcs" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/resources-http" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/resources-s3" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/resources-sftp" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/scala" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/security" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/signing" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/snapshots" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/test-kit" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/test-suites-base" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/testing-base" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/testing-junit-platform" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/testing-jvm" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/testing-jvm-infrastructure" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/testing-native" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/toolchains-jvm" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/tooling-api" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/tooling-api-builders" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/tooling-native" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/version-control" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/war" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/worker-processes" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/worker-services" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/workers" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/wrapper" />
+          <root url="jar://$USER_HOME$/Downloads/gradle-8.6-all.zip!/gradle-8.6/src/wrapper-shared" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

@@ -1,9 +1,8 @@
 package Counter;
 
 import java.sql.*;
-import java.util.*;
 import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 

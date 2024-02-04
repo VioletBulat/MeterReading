@@ -5,6 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
+    <!-- Создание схемы entities -->
+    <changeSet id="0" author="pg67aw">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS entities;
+        </sql>
+    </changeSet>
+
     <!-- Создание таблицы users в схеме entities -->
     <changeSet id="1" author="pg67aw">
         <createTable schemaName="entities" tableName="users">
